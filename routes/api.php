@@ -7,12 +7,16 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\ItemController;
 
+// Routing untuk api regis dan login
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+
+// Routing untuk cek login
 Route::get('/login', function () {
     return response()->json(['message' => 'Unauthenticated'], 401);
 })->name('login');
 
+// Routing RestAPI
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/activities', [ActivityController::class, 'store']);
     Route::get('/activities', [ActivityController::class, 'index']);

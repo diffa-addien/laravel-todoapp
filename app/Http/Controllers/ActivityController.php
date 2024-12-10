@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class ActivityController extends Controller
 {
+    // Create Checlist
     public function store(Request $request)
     {
         $request->validate(['title' => 'required|string']);
@@ -15,11 +16,13 @@ class ActivityController extends Controller
         return response()->json($activity, 201);
     }
 
+    // Tampilkan Semua Checlist
     public function index()
     {
         return response()->json(Activity::where('user_id', auth()->id())->get(), 200);
     }
 
+    // Delete Checlist
     public function destroy($id)
     {
         $activity = Activity::findOrFail($id);

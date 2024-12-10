@@ -8,6 +8,7 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
+    // Registrasi Akun Baru
     public function register(Request $request)
     {
         $validated = $request->validate([
@@ -25,6 +26,7 @@ class AuthController extends Controller
         return response()->json(['user' => $user], 201);
     }
 
+    // Login akun
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');

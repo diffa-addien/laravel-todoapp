@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
+    // Create item
     public function store(Request $request)
     {
         $request->validate([
@@ -22,12 +23,14 @@ class ItemController extends Controller
         return response()->json($item, 201);
     }
 
+    // Tampilkan semua item
     public function index($activityId)
     {
         $items = Item::where('activity_id', $activityId)->get();
         return response()->json($items, 200);
     }
 
+    // Update item
     public function update(Request $request, $id)
     {
         $request->validate(['name' => 'string|nullable', 'is_done' => 'boolean|nullable']);
@@ -38,6 +41,7 @@ class ItemController extends Controller
         return response()->json($item, 200);
     }
 
+    // Delete Item
     public function destroy($id)
     {
         $item = Item::findOrFail($id);
